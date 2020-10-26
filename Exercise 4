@@ -1,0 +1,93 @@
+start
+	Declarations
+		num SIZE
+		string didSwap
+		string scout[SIZE]
+		string needChange
+		string amountChange
+		num totalAmount
+		num boxes[SIZE]
+		num x
+		num temp
+		num COMP = SIZE - 1
+		num meanAmount
+		num medianAmount
+	SIZE = 18
+	changeArray()
+	fillArray()
+	sortArray()
+	totalBoxes()
+	meanBoxes()
+	medianBoxes()
+stop
+
+changeArray()
+	output "Do you want to add or remove more members? Y/N"
+	input needChange
+	while needChange = "Y"
+		output "Do you want to add or remove a scout?"
+		input amountChange
+		if amountChange = "add" then
+			SIZE = SIZE + 1
+		else
+			SIZE = SIZE - 1
+		endif
+		output "Do you want to add or remove more members? Y/N"
+		input needChange
+	endwhile
+return
+
+fillArray()
+	x = 0
+	while x > SIZE
+		output "Please enter scout's name: "
+		input scout[x]
+		output "Please enter boxes that scout sold: "
+		input boxes[x]
+		x = x + 1
+	endwhile
+return
+
+sortArray()
+	x = 0
+	didSwap = "Yes"
+	while didSwap = "Yes"
+		x = 0
+		didSwap = "No"
+		while x < COMP
+			if boxes[x] > boxes[x + 1] then
+			swap()
+			didSwap = "Yes"
+			endif
+			x = x + 1
+		endwhile
+	endwhile
+return
+
+swap()
+	temp = boxes[x + 1]
+	boxes[x + 1] = boxes[x]
+	boxes[x] = temp
+return
+
+totalBoxes()
+	x = 0
+	while x < SIZE
+		totalAmount = boxes[x] + totalAmount
+		x = x + 1
+	endwhile
+	output "The total amount of boxes of cookies sold is: "totalAmount
+return
+
+meanBoxes()
+	meanAmount = totalAmount / SIZE
+	output "The mean of the amount of boxes of cookies sold is: "meanAmount
+return
+
+medianBoxes()
+	if SIZE is even then
+		medianAmount = (boxes[SIZE/2] + boxes[ (SIZE/2) - 1] ) / 2
+	else
+		medianAmount = boxes[SIZE / 2]
+	output "The median of the amount of boxes of cookies sold is: "medianAmount
+return
